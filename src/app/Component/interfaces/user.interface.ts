@@ -1,5 +1,6 @@
 // src/app/interfaces/user.interface.ts
 export interface User {
+equipe: any
   id?: string
   firstName: string
   lastName: string
@@ -15,5 +16,6 @@ export interface User {
 export enum UserRole {
   ADMIN = 'ADMIN',
   ZONE_MANAGER = 'ZONE_MANAGER',
-  USER = 'USER'
+  USER = 'USER',
+  EQUIPE_MANAGER = "EQUIPE_MANAGER"
 }

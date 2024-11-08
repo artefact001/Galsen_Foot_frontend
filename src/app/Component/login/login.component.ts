@@ -43,6 +43,7 @@ export class LoginComponent {
           console.error('Login failed', error)
           // Optionally, handle login errors, e.g., show a message to the user
         }
+        
       )
     }
   }

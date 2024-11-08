@@ -32,12 +32,12 @@ export class UserManagementComponent implements OnInit {
 
   private initForm (): void {
     this.userForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      Name: ['', Validators.required],
+      // lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       role: [UserRole.ZONE_MANAGER, Validators.required],
-      zone: ['', Validators.required],
-      isActive: [true]
+      // zone: ['', Validators.required],
+      // isActive: [true]
     })
   }
 
@@ -53,7 +53,7 @@ export class UserManagementComponent implements OnInit {
     this.showUserModal = true
     this.userForm.reset({
       role: UserRole.ZONE_MANAGER,
-      isActive: true
+      // isActive: true
     })
   }
 
