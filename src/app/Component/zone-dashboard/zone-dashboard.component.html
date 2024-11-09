@@ -1,0 +1,116 @@
+<!--  Zone Dashboard -->
+<div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-md-12">
+          <h3 class="my-3">Tableau de Bord des Zones</h3>
+          <button class="btn btn-primary" (click)="openUserModal()">Ajouter une Zone</button>
+        </div>
+      </div> -->
+      <!-- Header -->
+        <div class="col-12">
+          <h3 class="my-3">Tableau de Bord des Zones</h3>
+          <button class="btn btn-primary" (click)="openUserModal()">Ajouter une Equipe</button>
+    
+          <!-- Loader de chargement -->
+            <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Chargement...</span>
+        
+          
+             
+    <!-- </div> -->
+    <!-- Header
+    <div class="row">
+      <div class="col-12">
+        <h3 class="my-3">Tableau de Bord des Utilisateurs</h3>
+        <button class="btn btn-primary" (click)="openUserModal()">Ajouter un Utilisateur</button>
+      </div>
+    </div>
+   -->
+    <!-- Loader de chargement -->
+    <!-- <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+   -->
+    <!-- Tableau des utilisateurs -->
+    <div *ngIf="!isLoading && users.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Equipe</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.equipe }}</td>
+            <td>
+              <!-- <span [ngClass]="{'badge bg-success': user.isActive, 'badge bg-danger': !user.isActive}"> -->
+                {{ user.isActive ? 'Actif' : 'Inactif' }}
+              <!-- </span> -->
+            </td>
+            <td>
+              <button class="btn btn-info" (click)="viewUser(user)">Voir</button>
+              <button class="btn btn-warning" (click)="editUser(user)">Modifier</button>
+              <button class="btn btn-danger" (click)="deleteUser(user.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Modal Utilisateur -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true" *ngIf="showUserModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userModalLabel">
+              {{ editMode ? 'Modifier' : 'Ajouter' }} un Utilisateur
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeUserModal()"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="zoneForm" (ngSubmit)="submitUser()">
+              <div class="mb-3">
+                <label for="firstName" class="form-label">Prénom</label>
+                <input id="firstName" formControlName="firstName" class="form-control" type="text" />
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Nom</label>
+                <input id="lastName" formControlName="lastName" class="form-control" type="text" />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" formControlName="email" class="form-control" type="email" />
+              </div>
+              <div class="mb-3">
+                <label for="role" class="form-label">Rôle</label>
+                <select id="role" formControlName="role" class="form-select">
+                  <option *ngFor="let role of userRoles" [value]="role">{{ role }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipe" class="form-label">Equipe</label>
+                <input id="equipe" formControlName="equipe" class="form-control" type="text" />
+              </div>
+              <div class="mb-3 form-check">
+                <input id="isActive" formControlName="isActive" class="form-check-input" type="checkbox" />
+                <label for="isActive" class="form-check-label">Actif</label>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeUserModal()">Annuler</button>
+                <button type="submit" class="btn btn-primary">{{ editMode ? 'Enregistrer' : 'Ajouter' }}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
