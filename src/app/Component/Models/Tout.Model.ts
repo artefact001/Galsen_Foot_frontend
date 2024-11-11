@@ -18,8 +18,18 @@ export interface Equipe {
     zone_id: number;
     user_id?: number;
 
-}
 
+
+}
+export interface EquipeModel {
+    id?: number;
+    nom?: string;
+    logo?: string;
+    date_creer?: Date;
+    zone_id?: number;
+    user_id?: number;
+
+}
 
 // joueur.model.ts
 export interface Joueur {
@@ -52,8 +62,11 @@ export interface Zone {
 
 // competition.model.ts
 export interface Competition {
+name: any;
     id: number;
     nom: string;
+    location : string;
+    date: string;
     date_debut: Date;
     date_fin: Date;
     created_at?: Date;

@@ -1,0 +1,65 @@
+<div class="inscription-container">
+  <h2>Inscription</h2>
+  
+  <!-- Registration Form -->
+  <form [formGroup]="registrationForm" (ngSubmit)="registerZone()">
+    
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" formControlName="nom" class="form-control" />
+      <div *ngIf="registrationForm.get('nom')?.invalid && registrationForm.get('nom')?.touched" class="error">
+        Le nom est requis.
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+      <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="error">
+        Un email valide est requis.
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" class="form-control" />
+      <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="error">
+        Mot de passe requis (min. 6 caractères).
+      </div>
+    </div>
+
+    <!-- Profile Picture Field -->
+    <div class="form-group">
+      <label for="photo_profile">Photo de profil</label>
+      <input type="file" id="photo_profile" (change)="onFileSelected($event)" class="form-control" />
+    </div>
+
+    <!-- Zone Name Field -->
+    <div class="form-group">
+      <label for="nom_zone">Nom de la Zone</label>
+      <input type="text" id="nom_zone" formControlName="nom_zone" class="form-control" />
+      <div *ngIf="registrationForm.get('nom_zone')?.invalid && registrationForm.get('nom_zone')?.touched" class="error">
+        Le nom de la zone est requis.
+      </div>
+    </div>
+
+    <!-- Locality Field -->
+    <div class="form-group">
+      <label for="localite">Localité</label>
+      <input type="text" id="localite" formControlName="localite" class="form-control" />
+      <div *ngIf="registrationForm.get('localite')?.invalid && registrationForm.get('localite')?.touched" class="error">
+        La localité est requise.
+      </div>
+    </div>
+
+    <!-- Submit Button with Loading State -->
+    <button type="submit" class="btn btn-primary" [disabled]="isSubmitting || registrationForm.invalid">
+      <span *ngIf="isSubmitting">Inscription en cours...</span>
+      <span *ngIf="!isSubmitting">S'inscrire</span>
+    </button>
+    
+  </form>
+</div>
