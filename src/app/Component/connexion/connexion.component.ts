@@ -46,7 +46,7 @@ export class ConnexionComponent {
               else if (response.user.role === 'zone'){
                 this.router.navigateByUrl('zones');
               }
-              else if (response.user.role === 'equpe'){
+              else if (response.user.role === 'equipe'){
                 this.router.navigateByUrl('equipe-dashboard');
               }
             }

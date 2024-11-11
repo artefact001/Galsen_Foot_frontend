@@ -10,7 +10,8 @@ import { AcceuilComponent } from './Component/acceuil/acceuil.component'
 import { ZoneDashboardComponent } from './Component/zone-dashboard/zone-dashboard.component'
 import { NotFoundComponent } from './Component/not-found/not-found.component'
 import { ConnexionComponent } from './Component/connexion/connexion.component'
-import { InscriptionComponent } from './Component/inscriptionZone/inscription.component'
+import {  InscriptionZoneComponent } from './Component/inscriptionZone/inscription.component'
+import { InscriptionEquipeComponent } from './Component/inscriptionEquipe/inscription.component'
 // import { CompetitionComponent } from './competition/competition.component'
 
 
@@ -19,7 +20,8 @@ import { InscriptionComponent } from './Component/inscriptionZone/inscription.co
 export const routes: Routes = [
   // { path: 'login', component: LoginComponent },
   { path: 'connexion', component: ConnexionComponent },
-  { path: 'ajout/zone', component: InscriptionComponent },
+  { path: 'ajout/zone', component: InscriptionZoneComponent },
+  { path: 'ajout/equipe', component: InscriptionEquipeComponent },
 
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'zones', component: ZoneDashboardComponent },

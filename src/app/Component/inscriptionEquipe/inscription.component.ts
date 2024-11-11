@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EquipeModel } from '../Models/Tout.Model';
-import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
+import { EquipeModel } from '../Models/Tout.Model';
 
 @Component({
   selector: 'app-inscription',
@@ -12,35 +12,28 @@ import { CommonModule } from '@angular/common';
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css']
 })
-export class InscriptionZoneComponent implements OnInit {
+export class InscriptionEquipeComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
   registrationForm!: FormGroup;
-  domaines: EquipeModel[] = [];
   isSubmitting = false;
 
   ngOnInit(): void {
-    this.initForm();
-  }
-
-  initForm(): void {
     this.registrationForm = this.fb.group({
       nom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       logo: [''],
       zone_id: [''],
-      nom_zone: ['', Validators.required],
-      localite: ['', Validators.required],
+      nom_equipe: ['', Validators.required],
       user_id: [''],
       date_creer: [''],
-      photo_profile: [null]
+      photo_profile: [null] // for file upload
     });
   }
 
-  // Handle file input for profile picture
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
@@ -48,7 +41,7 @@ export class InscriptionZoneComponent implements OnInit {
     }
   }
 
-  registerZone() {
+  registerEquipe() {
     if (this.registrationForm.invalid) {
       console.error('Le formulaire est invalide.');
       return;
@@ -62,7 +55,7 @@ export class InscriptionZoneComponent implements OnInit {
       formData.append(key, value);
     });
 
-    this.authService.registerZone(formData).subscribe(
+    this.authService.registerEquipe(formData).subscribe(
       (response: any) => {
         console.log('Inscription réussie:', response);
 
