@@ -1,0 +1,135 @@
+
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar" class="bg-dark text-white" style="width: 250px;">
+      <div class="p-3">
+        <h3 class="text-white">Dashboard</h3>
+      </div>
+      <div class="mt-3">
+        <a href="#" class="sidebar-link"><i class="fas fa-home"></i> Accueil</a><br>
+        <a href="#" class="sidebar-link"><i class="fas fa-chart-bar"></i> Statistiques</a><br>
+        <a href="#" class="sidebar-link"><i class="fas fa-users"></i> Utilisateurs</a><br>
+        <a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Paramètres</a>
+      </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div id="content" class="flex-grow-1">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+        <button id="sidebarToggle" class="btn btn-dark d-md-none">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="navbar-brand ms-3">Les Utilisateurs</div>
+        <div class="ms-auto">
+          <button class="btn btn-outline-secondary">
+            <i class="fas fa-user"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Gestion des Utilisateurs -->
+     <div class="card">
+       <div class="card-header d-flex justify-content-between align-items-center">
+         <h5 class="mb-0">Gestion des Utilisateurs</h5>
+         <button class="btn btn-primary" (click)="openUserModal()">
+           <i class="fas fa-plus"></i> Nouvel Utilisateur
+         </button>
+       </div>
+       <div class="card-body">
+         <div class="table-responsive">
+           <table class="table table-striped">
+             <thead>
+               <tr>
+                 <th>Nom</th>
+                 <th>Email</th>
+                 <th>Rôle</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let user of users">
+                 <td>{{ user.firstName }} {{user.lastName}}</td>
+                 <td>{{ user.email }}</td>
+                 <td>{{ user.role }}</td>
+               
+                 <td>
+                   <button class="btn btn-sm btn-info me-2" (click)="viewUser(user)">
+                     <i class="fas fa-eye"></i> Détails
+                   </button>
+                   <button class="btn btn-sm btn-warning me-2" (click)="editUser(user)">
+                     <i class="fas fa-edit"></i> Modifier
+                   </button>
+                   <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">
+                     <i class="fas fa-trash"></i> Supprimer
+                   </button>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+
+     <!-- Modal pour ajouter/modifier un utilisateur -->
+     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="userModalLabel">{{ editMode ? 'Modifier' : 'Ajouter' }} un Utilisateur</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+               (click)="closeUserModal()"></button>
+           </div>
+           <div class="modal-body">
+             <form [formGroup]="userForm" (ngSubmit)="submitUser()">
+            
+               <div class="mb-3">
+                 <label for="Name" class="form-label">Nom</label>
+                 <input type="text" id="Name" formControlName="Name" class="form-control" />
+               </div>
+               <div class="mb-3">
+                 <label for="email" class="form-label">Email</label>
+                 <input type="email" id="email" formControlName="email" class="form-control" />
+               </div>
+               <div class="mb-3">
+                 <label for="role" class="form-label">Rôle</label>
+                 <select id="role" formControlName="role" class="form-select">
+                   <option *ngFor="let role of userRoles" [value]="role">{{ role }}</option>
+                 </select>
+               </div>
+              
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                   (click)="closeUserModal()">Annuler</button>
+                 <button type="submit" class="btn btn-primary">{{ editMode ? 'Enregistrer' : 'Ajouter' }}</button>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+      <script>
+        function addUser() {
+          // Récupérer les valeurs du formulaire
+          const name = document.getElementById('Nom').value;
+          const email = document.getElementById('email').value;
+          const role = document.getElementById('role').value;
+
+          // Logique d'ajout de l'utilisateur (exemple)
+          console.log('Nom:', name,'Email:', email, 'Rôle:', role, 
+
+          // Fermer le modal
+          var modal = new bootstrap.Modal(document.getElementById('userModal'));
+          modal.hide();
+
+          // Réinitialiser le formulaire
+          document.getElementById('addUserForm').reset();
+        }
+
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+          document.getElementById('sidebar').classList.toggle('active');
+        });
+      </script>
+
