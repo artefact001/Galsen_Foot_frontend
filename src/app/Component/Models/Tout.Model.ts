@@ -62,19 +62,21 @@ export interface Zone {
 
 // competition.model.ts
 export interface Competition {
+participants: any;
+description: any;
 name: any;
     id: number;
     nom: string;
-    location : string;
+    lieux : string;
     date: string;
     date_debut: Date;
     date_fin: Date;
-    created_at?: Date;
-    updated_at?: Date;
+
 }
 
 // competition-equipe.model.ts
 export interface CompetitionEquipe {
+nom: any;
     id: number;
     equipe_id: number;
     competition_id: number;

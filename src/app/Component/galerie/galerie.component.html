@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Galerie</h2>
+
+  <!-- Image Upload Section -->
+  <div class="upload-section">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    <button (click)="uploadImage()" class="btn btn-primary">Upload Image</button>
+    <div *ngIf="uploadError" class="alert alert-danger">{{ uploadError }}</div>
+  </div>
+
+  <!-- Display Images -->
+  <div class="image-gallery">
+    <div *ngFor="let galerie of galeries" class="gallery-item">
+      <img [src]="'http://localhost:8000/storage/' + galerie.image" alt="Gallery Image">
+      <button (click)="deleteImage(galerie.id)" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>

@@ -1,41 +1,31 @@
-<!-- source:https://codepen.io/owaiswiz/pen/jOPvEPB -->
-<div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-  <div class="max-w-full m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
-    
-    <div class="lg:w-1/2 xl:w-6/12 p-6 sm:p-12">
-
-      <div class="mt-12 flex flex-col items-center">
-        <h1 class="text-2xl xl:text-3xl font-extrabold">
-          Bienvenue </h1>
-        <div class="w-full flex-1 mt-8">
-
-          <form action="">
-            <div class="mx-auto max-w-xl">
-              <input
-                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                type="email" id="email" name="email" [(ngModel)]="userObject.email" placeholder="Email" />
-              <input
-                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                type="password" id="password" name="password" [(ngModel)]="userObject.password"
-                placeholder="Mot de passe" />
-              <button type="submit" (click)="login()"
-                class="mt-5 tracking-wide font-semibold bg-[#007461] text-gray-100 w-full py-4 rounded-lg hover:bg-[#06ab8f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                <svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                  <circle cx="8.5" cy="7" r="4" />
-                  <path d="M20 8v6M23 11h-6" />
-                </svg>
-                <span class="ml-3">
-                  Connexion
-                </span>
-              </button>
-
-            </div>
-          </form>
-        </div>
-      </div>
+<div class="min-vh-100 d-flex">
+  <!-- Image placeholder section (50% of the page) -->
+  <div class="col-12 col-lg-6 d-none d-lg-block p-0">
+    <div class="w-100 h-100" style="background-color: #f8f9fa; background-image: url('https://img.freepik.com/photos-premium/jeune-garcon-thailandais-jouer-au-football-au-dessus-du-coup-tete-coucher-du-soleil_46383-37.jpg?uid=R128627789&ga=GA1.1.1817262845.1713973150&semt=ais_hybrid'); background-size: cover; background-position: center;">
+      <!-- You can replace the placeholder URL above with your actual image URL -->
     </div>
+  </div>
 
+  <!-- Login form section (50% of the page) -->
+  <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center bg-white">
+    <div class="w-100 p-4 p-sm-5" style="max-width: 500px;">
+      <h1 class="h4 font-weight-bold text-center mb-4">Bienvenue</h1>
+      <form>
+        <div class="mb-3">
+          <input type="email" class="form-control py-3" id="email" name="email" [(ngModel)]="userObject.email" placeholder="Email" />
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control py-3" id="password" name="password" [(ngModel)]="userObject.password" placeholder="Mot de passe" />
+        </div>
+        <button type="submit" (click)="login()"
+          class="btn btn-primary btn-block py-3 text-white" style="background-color: #4507d8;">
+          <svg class="bi bi-person-fill mr-2" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm6-6a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"/>
+            <path d="M12 5v4m1-2h4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Connexion
+        </button>
+      </form>
+    </div>
   </div>
 </div>

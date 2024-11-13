@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs'
-import { Tirage } from '../Component/Models/Tout.Model'
-
+import { CompetitionEquipe, Tirage } from '../Component/Models/Tout.Model'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +9,13 @@ export class TirageService {
   private readonly apiUrl = 'http://localhost:8000/api/tirages'
 
   constructor (private http: HttpClient) {}
+  
+
+  // Récupérer les équipes par compétition
+  getEquipesByCompetition(competitionId: number): Observable<CompetitionEquipe[]> {
+    return this.http.get<CompetitionEquipe[]>(`${this.apiUrl}/competitions/${competitionId}/equipes`);
+  }
+
 
   // Obtenir tous les tirages ou filtrer par compétition ID
   getTirages (competitionId?: number): Observable<Tirage[]> {
