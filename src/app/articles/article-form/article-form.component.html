@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>{{ isEditing ? 'Éditer' : 'Ajouter' }} un Article</h2>
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text" class="form-control" id="titre" formControlName="titre">
+    </div>
+    <div class="form-group">
+      <label for="contenu">Contenu</label>
+      <textarea class="form-control" id="contenu" formControlName="contenu"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="Zone_id">Zone</label>
+      <textarea class="form-control" id="Zone_id" formControlName="Zone_id"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="file">Fichier</label>
+      <input type="file" class="form-control" id="file" formControlName="file">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">{{ isEditing ? 'Mettre à jour' : 'Ajouter' }}</button>
+    <a routerLink="/articles" class="btn btn-secondary">Annuler</a>
+  </form>
+</div>

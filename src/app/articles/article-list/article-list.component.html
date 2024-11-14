@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Liste des Articles</h2>
+  <a routerLink="/articles/create" class="btn btn-primary mb-3">Ajouter un Article</a>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let article of articles">
+        <td>{{ article.titre }}</td>
+        <td>
+          <a routerLink="/articles/{{ article.id }}" class="btn btn-info">Voir</a>
+          <a routerLink="/articles/edit/{{ article.id }}" class="btn btn-warning">Éditer</a>
+          <button class="btn btn-danger" (click)="deleteArticle(article.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

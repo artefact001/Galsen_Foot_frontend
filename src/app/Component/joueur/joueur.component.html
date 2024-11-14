@@ -1,0 +1,87 @@
+<div class="container">
+  <h2>Gestion des Joueurs</h2>
+  <form [formGroup]="joueurForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div>
+      <label>Nom</label>
+      <input formControlName="nom" />
+      <div *ngIf="joueurForm.get('nom')?.invalid && joueurForm.get('nom')?.touched" class="error">
+        Nom requis
+      </div>
+    </div>
+
+    <div>
+      <label>Âge</label>
+      <input type="number" formControlName="age" />
+      <div *ngIf="joueurForm.get('age')?.invalid && joueurForm.get('age')?.touched" class="error">
+        Âge valide requis
+      </div>
+    </div>
+
+    <div>
+      <label>Licence</label>
+      <input formControlName="licence" />
+      <div *ngIf="joueurForm.get('licence')?.invalid && joueurForm.get('licence')?.touched" class="error">
+        Licence requise
+      </div>
+    </div>
+
+    <div>
+      <label>Équipe</label>
+      <input type="number" formControlName="equipe_id" />
+      <div *ngIf="joueurForm.get('equipe_id')?.invalid && joueurForm.get('equipe_id')?.touched" class="error">
+        Équipe valide requise
+      </div>
+    </div>
+
+    <div>
+      <label>Catégorie</label>
+      <select formControlName="categorie_id">
+        <option *ngFor="let categorie of categories" [value]="categorie.id">
+          {{ categorie.nom }}
+        </option>
+      </select>
+      <div *ngIf="joueurForm.get('categorie_id')?.invalid && joueurForm.get('categorie_id')?.touched" class="error">
+        Catégorie valide requise
+      </div>
+    </div>
+
+    <div>
+      <label>Profil</label>
+      <input type="file" (change)="onFileSelected($event)" />
+      <div *ngIf="fileError" class="error">
+        Veuillez sélectionner une image valide
+      </div>
+    </div>
+
+    <button type="submit">
+      {{ selectedJoueur ? 'Mettre à jour' : 'Ajouter' }}
+    </button>
+    <button type="button" (click)="resetForm()">Annuler</button>
+  </form>
+</div>
+
+
+    <div class="player-list">
+      <div *ngFor="let joueur of joueurs">
+        <p>{{ joueur.nom }} ({{ joueur.age }} ans)</p>
+        <button (click)="viewDetails(joueur)">Voir Détails</button>
+        <button (click)="editJoueur(joueur)">Éditer</button>
+        <button (click)="deleteJoueur(joueur.id)">Supprimer</button>
+      </div>
+    </div>
+
+    <!-- Modale pour les détails du joueur -->
+    <div *ngIf="selectedJoueur" class="modal">
+      <div class="modal-content">
+        <span (click)="closeDetails()" class="close">&times;</span>
+        <h3>Détails du Joueur</h3>
+        <p>Nom: {{ selectedJoueur.nom }}</p>
+        <p>Âge: {{ selectedJoueur.age }}</p>
+        <p>Licence: {{ selectedJoueur.licence }}</p>
+        <p>Équipe ID: {{ selectedJoueur.equipe_id }}</p>
+        <p>Catégorie ID: {{ selectedJoueur.categorie_id }}</p>
+        <p>profil: {{ selectedJoueur.profil}}</p>
+      </div>
+    </div>
+
+

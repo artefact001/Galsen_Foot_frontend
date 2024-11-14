@@ -1,55 +1,36 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Competition } from '../Component/Models/Tout.Model';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CompetitionService {
-  private apiUrl = '/api/competitions';
+  private apiUrl = 'http://localhost:8000/api/competitions';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
-
-  // List all competitions
-  getAllCompetitions(): Observable<Competition[]> {
-    return this.http.get<Competition[]>(this.apiUrl).pipe(
-      catchError(this.handleError)
-    );
+  getAllCompetitions(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  // Get a competition by ID
-  getCompetitionById(id: number): Observable<Competition> {
-    return this.http.get<Competition>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+  getCompetition(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  // Create a new competition
-  createCompetition(data: Partial<Competition>): Observable<Competition> {
-    return this.http.post<Competition>(this.apiUrl, data).pipe(
-      catchError(this.handleError)
-    );
+  createCompetition(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, data);
   }
 
-  // Update an existing competition
-  updateCompetition(id: number, data: Partial<Competition>): Observable<Competition> {
-    return this.http.put<Competition>(`${this.apiUrl}/${id}`, data).pipe(
-      catchError(this.handleError)
-    );
+  updateCompetition(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
   }
 
-  // Delete a competition
   deleteCompetition(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
-  // Error handling
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('An error occurred:', error.message);
-    return throwError(() => new Error('An error occurred while processing the request.'));
+  
+    // Méthode pour obtenir les détails d'une compétition
+  getCompetitionDetails(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}/details`);
   }
 }
