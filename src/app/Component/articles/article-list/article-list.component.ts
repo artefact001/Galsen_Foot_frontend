@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ArticleService } from '../../Services/article.service';
+import { ArticleService } from '../../../Services/article.service';
 
 @Component({
   selector: 'app-article-list',

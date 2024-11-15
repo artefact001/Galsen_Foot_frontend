@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>{{ isEdit ? 'Modifier' : 'Créer' }} une Compétition</h2>
+  <form [formGroup]="competitionForm" (ngSubmit)="onSubmit()">
+    <label for="nom">Nom:</label>
+    <input id="nom" formControlName="nom" />
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" formControlName="date" />
+
+    <button type="submit">{{ isEdit ? 'Mettre à jour' : 'Créer' }}</button>
+  </form>
+</div>

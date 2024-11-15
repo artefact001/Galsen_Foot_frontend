@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CompetitionService {
+  getCompetitionById(competitionId: number | undefined) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8000/api/competitions';
   private http = inject(HttpClient);
 

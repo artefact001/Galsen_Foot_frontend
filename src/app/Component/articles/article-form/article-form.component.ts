@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ArticleService } from '../../Services/article.service';
+import { ArticleService } from '../../../Services/article.service';
 
 @Component({
   selector: 'app-article-form',

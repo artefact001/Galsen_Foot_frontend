@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';  // Import RouterModule
-import { ArticleService } from '../../Services/article.service';
+import { ArticleService } from '../../../Services/article.service';
 
 @Component({
   selector: 'app-article-details',

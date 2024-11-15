@@ -1,0 +1,13 @@
+<div class="container">
+  <h2 class="title">Liste des Compétitions</h2>
+  <div *ngIf="competitions.length === 0" class="empty-message">
+    Aucun compétition disponible.
+  </div>
+  <div class="competition-card" *ngFor="let competition of competitions">
+    <h3>{{ competition.nom }}</h3>
+    <p>Date: {{ competition.date }}</p>
+    <button (click)="viewCompetition(competition.id)">Détails</button>
+    <button (click)="editCompetition(competition.id)">Modifier</button>
+    <button (click)="deleteCompetition(competition.id)">Supprimer</button>
+  </div>
+</div>
