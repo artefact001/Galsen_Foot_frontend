@@ -1,0 +1,33 @@
+
+  .matche-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.matche-card {
+  width: 30%;
+  margin-bottom: 20px;
+}
+.matche-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.matche-card-content {
+  padding: 10px;
+}
+.matche-card-title {
+
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.matche-card-text {
+  margin-bottom: 5px;
+}
+.matche-card-link {
+  display: block;
+  margin-top: 10px;
+  top: 10px;
+}
+
+  

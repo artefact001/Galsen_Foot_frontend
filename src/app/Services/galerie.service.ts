@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GalerieService {
-  private apiUrl = 'http://localhost:8000/api/galerie';
+  private apiUrl = 'http://localhost:8000/api/galeries';
 
   constructor(private http: HttpClient) {}
 

@@ -1,41 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ZoneService } from '../../../Services/zone.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ZoneService } from '../../Services/zone.service';
+import { Zone } from '../Models/Tout.Model';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-zone-details',
+  selector: 'app-zone-equipe-component',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './zone-details.component.html',
-  styleUrl: './zone-details.component.css'
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  templateUrl: './zone-equipe-component.component.html',
+  styleUrls: ['./zone-equipe-component.component.css']
 })
-export class ZoneDetailsComponent implements OnInit {
-  zone: any;
-  equipes: any;
-  // id: number;
+export class ZoneEquipeComponent implements OnInit {
+  equipes: any[] = [];
+  selectedZone: number | null = null;
+  zones: Zone[] = [];
+  errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private zoneService: ZoneService) {}
+  constructor(private zoneService: ZoneService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.zoneService.getZoneById(id).subscribe(
-      (data) => {
-        this.zone = data;
+    // Charger les zones au démarrage
+    this.zoneService.getZones().subscribe(
+      (data: Zone[]) => {
+        this.zones = data;
       },
-      (error) => {
-        console.error('Erreur lors de la récupération des détails de la zone', error);
-        this.zoneService.redirectTo('/zones'); // Redirect if zone not found
+      (error: any) => {
+        this.errorMessage = error.message;
+        console.error('Erreur lors de la récupération des zones :', error);
       }
     );
   }
-  
-  
-  fetchEquipes(): void {
-  if (this.zone) {
+
+fetchEquipes(): void {
+  if (this.selectedZone) {
     // Appel correct de la méthode getEquipesByZone avec zoneService
-    this.zoneService.getEquipesByZone(this.zone).subscribe(
+    this.zoneService.getEquipesByZone(this.selectedZone).subscribe(
       (data: any) => {
         // Si les données contiennent un attribut "equipes"
         this.equipes = data.equipes || []; // Assigner les équipes ou un tableau vide
@@ -48,16 +49,12 @@ export class ZoneDetailsComponent implements OnInit {
     console.warn('Aucune zone sélectionnée.');
   }
 }
-  Zone(Zone: any) {
-    throw new Error('Method not implemented.');
-  }
 
 //filtrer les equipes qui participent a une competition lorsque l'on clique sur participer
 ajouterEquipe(equipe: any): void {
   this.equipes.push(equipe);
-  this.zone = (this.zone || []).concat(equipe);
+  this.selectedZone = null;
 }
-
   //supprimer une equipe de la liste des equipes
   // supprimerEquipe(equipe: any): void {
   //   const index = this.equipes.indexOf(equipe);
@@ -73,5 +70,6 @@ ajouterEquipe(equipe: any): void {
       this.equipes.splice(index, 1);
     }
   }
-  
+
+
 }

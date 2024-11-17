@@ -52,6 +52,7 @@ export interface Categorie {
 
 // zone.model.ts
 export interface Zone {
+    getZones(): unknown;
     id: number;
     nom: string;
     localite: string;

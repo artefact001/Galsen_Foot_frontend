@@ -2,7 +2,7 @@
   <h2>Détails de la Compétition</h2>
   <div class="competition-details" *ngIf="competition">
     <h3>{{ competition.nom }}</h3>
-    <p>Date: {{ competition.date }}</p>
+    <p>Dates: debut prévue:{{ competition.date_debut }}</p> <p> fin prévue:{{ competition.date_fin }}</p>
     <button (click)="backToList()">Retour à la liste</button>
   </div>
 </div>

@@ -4,8 +4,14 @@
     <label for="nom">Nom:</label>
     <input id="nom" formControlName="nom" />
 
-    <label for="date">Date:</label>
-    <input type="date" id="date" formControlName="date" />
+    <label for="date">Date debut:</label>
+    <input type="date" id="date_debut" formControlName="date_debut" />
+
+    <label for="date">Date fin:</label>
+    <input type="date" id="date_fin" formControlName="date_fin" />
+
+     <label for="lieux">Lieux:</label>
+    <input type="string" id="lieux" formControlName="lieux" />
 
     <button type="submit">{{ isEdit ? 'Mettre à jour' : 'Créer' }}</button>
   </form>

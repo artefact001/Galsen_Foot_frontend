@@ -31,19 +31,41 @@ export class CompetitionFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.competitionId = params['id'];
-      this.isEdit = !!this.competitionId;
-      if (this.isEdit) {
-        this.competitionService.getCompetitionById(this.competitionId)
-          .subscribe((data: { [key: string]: any; }) => {
-            this.competitionForm.patchValue(data);
-          });
+  // ngOnInit(): void {
+  //   this.route.params.subscribe(params => {
+  //     this.competitionId = params['id'];
+  //     this.isEdit = !!this.competitionId;
+  //     if (this.isEdit) {
+  //       this.competitionService.getCompetitionById(this.competitionId)
+  //         // .subscribe((data: { [key: string]: any; }) => {
+  //         .subscribe((data: any) => {
+  //           console.log(data);
+  //         })
+  //           this.competitionForm.patchValue(data);
+  //         // this.competitionService.getCompetitionById(this.competitionId).subscribe((_data: any) => {
+  //           // this.competitionForm.patchValue(data);
+  //         });
+  //         // });
+  //     }
+  //   });
+  // }
 
-      }
-    });
-  }
+
+  ngOnInit(): void {
+  this.route.params.subscribe(params => {
+    this.competitionId = +params['id']; // Assurez-vous que 'id' est converti en nombre
+    this.isEdit = !!this.competitionId;
+
+    if (this.isEdit) {
+      this.competitionService.getCompetitionById(this.competitionId).subscribe((data: any) => {
+        console.log(data);
+        this.competitionForm.patchValue(data); // Remplir le formulaire avec les données récupérées
+      });
+    }
+  });
+}
+
+
 
   onSubmit(): void {
     if (this.competitionForm.valid) {

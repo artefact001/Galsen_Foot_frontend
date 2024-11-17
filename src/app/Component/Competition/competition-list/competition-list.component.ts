@@ -13,6 +13,10 @@ import { CommonModule } from '@angular/common';
 })
 
 export class CompetitionsListComponent implements OnInit {
+GoToForm() {
+throw new Error('/competitions/edit');
+}
+
   competitions: any[] = [];
 
   constructor(private competitionService: CompetitionService, private router: Router) {}
@@ -36,4 +40,25 @@ export class CompetitionsListComponent implements OnInit {
       this.competitions = this.competitions.filter(c => c.id !== id);
     });
   }
+
+
+  currentPage: number = 1;
+itemsPerPage: number = 9;
+
+get totalPages(): number {
+  return Math.ceil(this.competitions.length / this.itemsPerPage);
+}
+
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+  }
+}
+
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+  }
+}
+
 }
