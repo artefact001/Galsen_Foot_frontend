@@ -4,7 +4,7 @@ import { AdminDashboardComponent } from './Component/admin-dashboard/admin-dashb
 import { EquipeDashboardComponent } from './Component/equipe-dashboard/equipe-dashboard.component'
 // import { LoginComponent } from './Component/login/login.component'
 import { UserManagementComponent } from './Component/user-management/user-management.component'
-// import { TirageComponent } from './Component/tirage/tirage.component'
+// import { TirageListComponent } from './Component/tirage/tirages-list.component'
 import { AcceuilComponent } from './Component/acceuil/acceuil.component'
 // import { MatcheComponent } from './Component/matche/matche.component'
 // import { ZoneDashboardComponent } from './Component/zone-dashboard/zone-dashboard.component'
@@ -24,6 +24,7 @@ import { CompetitionsListComponent } from './Component/Competition/competition-l
 import { CompetitionFormComponent } from './Component/Competition/competition-form/competition-form.component'
 import { CompetitionDetailsComponent } from './Component/Competition/competition-details/competition-details.component'
 import { ZoneEquipeComponent } from './Component/zone-equipe-component/zone-equipe-component.component'
+import { TirageslistComponent } from './Component/tirage/tirages-list.component/tirages-list.component'
 // import { CompetitionDetailsComponent } from './Component/Competition/competition-details/competition-details.component'
 // import { MatcheListComponent } from './components/matche-list/matche-list.component'
 
@@ -57,7 +58,10 @@ export const routes: Routes = [
   {path: 'zones/:id', component: ZoneDetailsComponent },  // Route to view zone details
 
   // { path: 'matches', component: MatcheListComponent },
-  // { path: 'tirages', component: TirageComponent },
+  // { path: 'tirage', component: TiragesListComponent },
+  
+  { path: 'tirages', component: TirageslistComponent},
+  // { path: 'tirages', component: TiragesListComponent },
   // { path: 'tirages/lancer', component: TirageComponent },
   { path: '', redirectTo: '/acceuil', pathMatch: 'full' },
   { path: 'acceuil', component: AcceuilComponent }, // Ensure this path and component are correct

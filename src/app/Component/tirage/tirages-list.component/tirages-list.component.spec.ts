@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TirageComponent } from './tirage.component';
+import { TirageComponent } from './tirages-list.component'; // Corrected import path
 
 describe('TirageComponent', () => {
   let component: TirageComponent;
