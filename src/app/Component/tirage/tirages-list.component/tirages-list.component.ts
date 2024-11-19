@@ -115,7 +115,9 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-
+import { Tirage, CompetitionEquipe, Competition, Zone } from '../../Models/Tout.Model';
+import { TirageService } from '../../../Services/tirage.service';
+import { CompetitionService } from '../../../Services/competition.service';
 @Component({
   selector: 'app-tirages-list.component',
   standalone: true,
@@ -126,6 +128,11 @@ import { CommonModule } from '@angular/common';
 export class TirageslistComponent implements OnInit {
   tirageForm: FormGroup;
   poules: any[] = [];
+  tirageService: any;
+  // tirages: any;
+  tirages: Tirage[] = [];
+  competitions: Competition[] = []; // Liste des compétitions
+  equipes: CompetitionEquipe[] = []; // Liste des équipes participant à la compétition sélectionnée
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.tirageForm = this.fb.group({
@@ -156,5 +163,13 @@ export class TirageslistComponent implements OnInit {
       .subscribe((result: any) => {
         this.poules = JSON.parse(result.poul); // Parse the JSON poules received from API
       });
+  }
+  
+  
+  // Charger les tirages
+  loadTirages(): void {
+    this.tirageService.getTirages().subscribe((data: Tirage[]) => {
+      this.tirages = data;
+    });
   }
 }
