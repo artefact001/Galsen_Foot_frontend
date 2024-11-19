@@ -16,6 +16,9 @@ import { UserModel } from '../Models/user.model';
   styleUrl: './connexion.component.css'
 })
 export class ConnexionComponent {
+  getUserRole() {
+    throw new Error("Method not implemented.");
+  }
   private authService = inject(AuthService);
   private router =inject(Router);
 

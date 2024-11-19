@@ -72,5 +72,7 @@ export const routes: Routes = [
   { path: 'zone-equipe', component: ZoneEquipeComponent },
   { path: '**', component: NotFoundComponent }
 
+//  canActivate: [EquipeGuard],
+// import { EquipeGuard } from './guards/equipe.guard';
 
 ]

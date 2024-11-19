@@ -9,14 +9,22 @@ import { Observable } from "rxjs";
 })
 
 export class AuthService{
-  // constructor(private http: HttpClient) {}
+
+  private userRoles: string[] | null = null;
+constructor(private httpClient: HttpClient) {//+
+    this.http = httpClient;//+
+     this.userRoles = ['admin']; // Exemple de rôle
+      this.userRoles = ['zone']; // Exemple de rôle
+      this.userRoles = ['equipe']; // Exemple de rôle
+  }//+
+  // constructor(private http: HttpClient) {
+     
+
+  // }
   private http = inject(HttpClient);
   @Injectable({
     providedIn: 'root'
   })
-
-
-  // Decaration des methods
 
     // method to login
   login(identifiant: any)  {
@@ -40,23 +48,6 @@ export class AuthService{
     return this.http.post(`${apiUrl}/register/admin`, identifiant)
   }
 
-  //  // Méthode pour récupérer les domaines
-  //  getSpecialisations(): Observable<string[]> {
-  //   return this.http.get<string[]>(`${apiUrl}/domaines`);
-  // }
-
-  // ngOnInit(): void {
-  //   this.authService.getSpecialisations().subscribe(
-  //     (data: DomaineModel[]) => {
-  //       console.log('Domaines chargés:', data);
-  //       this.domaines = data;
-  //     },
-  //     (error) => {
-  //       console.error('Erreur lors du chargement des domaines:', error);
-  //     }
-  //   );
-  // }
-
 
  // Method to logout
  logout() {
@@ -67,26 +58,15 @@ export class AuthService{
 
 
 
-
-
-
-//   login(email: string, password: string): Observable<any> {
-
-
-
-
-
-
-
-//   // isAuthenticated(): boolean {
-//   //   // TODO: implement authentication logic
-//   //   return true;
-//   // }
-// }
-
 //ACCESS AU TOKEN
   getToken(): string | null {
     return localStorage.getItem('access_token'); // Exemple d'obtention du token
+  }
+  
+  
+  
+  getUserRoles(): string[] | null {
+    return this.userRoles;
   }
 
 }

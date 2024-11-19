@@ -1,13 +1,13 @@
 import { inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from '../../../../../../Guindiko/projet/guindiko_front/Guindiko_front/src/app/services/auth-service.service';
+import { AuthService } from "../Services/auth.service";
 
 export const AdminGuard = () => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
   // Récupérez le rôle directement depuis le service
-  const roles = authService.getUserRole();
+  const roles = authService.getUserRoles();
 
   if (roles && roles.includes('admin')) {
     // Continuez avec la logique si le rôle est 'mentee'
