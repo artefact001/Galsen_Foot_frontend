@@ -91,3 +91,4 @@ export class InscriptionZoneComponent implements OnInit {
     );
   }
 }
+  
